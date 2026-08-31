@@ -153,6 +153,60 @@ It may accelerate an already-supported wager if:
 
 > Stats establish edge → market determines value → live observation may improve timing.
 
+## Observed patterns — not canonical rules
+
+These are retained as hypotheses to test across more matches. They must not silently become hard rules from a small sample.
+
+### Sportsbook repricing can be overweighted during cash-out decisions
+
+A sportsbook price move is evidence, not ground truth. Live repricing can reflect time decay, game-state changes, incoming money, liability management, trader intervention, or model updates. SoccerAITz does not currently observe the sportsbook's held volume or liability position, so it cannot infer why a line moved.
+
+Observed implication:
+
+> Do not cash out solely because the sportsbook reprices against the ticket. Re-evaluate the underlying live state independently, then compare current modeled probability with the cash-out value.
+
+A move from **high probability** to **likely / medium-high probability** is not automatically an exit signal.
+
+### A good entry can remain a reasonable hold after probability declines
+
+Probability naturally decays with the clock. The relevant question is not whether the event is less likely than at entry; it is whether the expected value of holding is still better than the available cash-out value.
+
+Observed implication:
+
+> Distinguish deterioration of the original edge from ordinary time decay.
+
+### Trailing-team desperation can be sterile
+
+A team trailing by one or two goals may gain possession, territory, shots, or visible urgency without creating meaningful scoring quality. The Atlanta–Charlotte observation showed that a two-goal deficit did not automatically produce an Over environment when the trailing side remained low-xG and generated no big chances.
+
+Observed implication:
+
+> Do not treat "must attack" as equivalent to "can create." Weight xG velocity, big chances, shot quality, and structural threat above possession or desperation alone.
+
+### Independent scoring paths can make BTTS value disappear quickly
+
+When both teams have already demonstrated credible, independent scoring paths and BTTS remains near even money, waiting for additional confirmation can erase the edge. Manchester United–Ipswich was an observed case where both sides had a big chance and meaningful xG before BTTS resolved soon afterward.
+
+Observed implication:
+
+> Track whether the model's confirmation threshold is too conservative in fast-developing first halves.
+
+### Entry latency can turn a correct read into no trade
+
+St. Louis–Dallas reinforced that the model can identify the right game state but still miss the actionable price because execution occurs too slowly. Excessive confirmation after the edge is already established can allow the market or match state to move past the entry window.
+
+Observed implication:
+
+> Once the model has established sufficient evidence and acceptable price, additional confirmation has a cost. Measure decision latency as an execution variable.
+
+### Outcome validation does not prove line-selection superiority
+
+When several goal lines are supported by the same thesis, a higher-variance line winning does not make it the better original selection. The preferred line remains the one with the better combination of model probability, sportsbook price, expected value, and variance.
+
+Observed implication:
+
+> Record whether the aggressive alternative also won, but do not use hindsight to rewrite the original risk-adjusted selection.
+
 ## Open design issue — stake sizing
 
 Inherited v4.2 confidence sizing remains provisional.
