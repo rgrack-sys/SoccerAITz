@@ -31,7 +31,7 @@
 3. **Stake sizing**: v4.3 records inherited percentages as provisional and warns not to equate confidence with stake. M0 does not size wagers.
 4. **Probability quality**: the simulation count is a design recommendation, not evidence of statistical validity. No calibrated event rate, backtest, out-of-sample score, or Rule 29 effect exists in inspected implementation.
 5. **Input schema vs decision sufficiency**: v4.3 JSON Schema requires a nonempty `markets` array but allows a line with missing odds and null timestamps. Thus schema-valid input can still be unusable for BET. A future evidence gate must separately enforce minimum recent match/market data and fail closed.
-6. **Full owner handoff missing**: cannot assert all historical accepted rules are captured. Existing versions remain untouched, and new work is limited to the uncontested deterministic threshold.
+6. **Full owner handoff missing**: cannot assert all historical accepted rules are captured. Existing versions remain untouched, and new work is limited to the uncontested deterministic threshold. An earlier v4.4 artifact may exist outside the inspected repository; it has not been retrieved or independently reconciled in this intake.
 
 ## Accepted rule preservation
 
